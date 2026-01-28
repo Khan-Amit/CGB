@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGB | Crypto Gift Box</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-gem"></i> CGB</h1>
+            <p class="subtitle">Crypto Gift Box - Just Land Pioneer Portal</p>
+            <p class="philosophy">DESIRE → CONNECT → VERIFY → MINT → RECEIVE</p>
+        </header>
+
+        <main>
+            <section class="module">
+                <h2><i class="fas fa-brain"></i> 1. State Your Desire</h2>
+                <p>I desire to receive the Pioneer Seed NFT for Just Land.</p>
+                <button id="connectWalletBtn" class="btn">
+                    <i class="fas fa-wallet"></i> Connect Your Crypto Wallet
+                </button>
+                <div id="walletStatus" class="hidden">
+                    <p><i class="fas fa-check-circle success-icon"></i> Connected: <span id="walletAddress">...</span></p>
+                </div>
+            </section>
+
+            <section class="module">
+                <h2><i class="fas fa-link"></i> 2. & 3. Connect & Verify</h2>
+                <div class="flow-diagram">
+                    <div class="flow-step"><div class="flow-icon">💭</div><p>Desire</p></div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step"><div class="flow-icon">🔗</div><p>Connect</p></div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step"><div class="flow-icon">🤖</div><p>ENKI Verify</p></div>
+                </div>
+                <p id="verifyStatus">Awaiting wallet connection...</p>
+                <button id="verifyBtn" class="btn" disabled>
+                    <i class="fas fa-search"></i> Verify Eligibility
+                </button>
+            </section>
+
+            <section class="module">
+                <h2><i class="fas fa-gem"></i> 4. & 5. Mint & Receive</h2>
+                <div class="reward-box" id="rewardBox">
+                    <div class="nft-display">🌌</div>
+                    <h3 id="rewardTitle">Your Just Land Seed Awaits</h3>
+                    <p id="rewardMessage">Connect, verify, and mint your unique Seed NFT.</p>
+                    <div class="reward-details hidden" id="rewardDetails"></div>
+                </div>
+                <button id="mintBtn" class="btn" disabled>
+                    <i class="fas fa-hammer"></i> Mint My Seed NFT
+                </button>
+                <p id="mintStatus"></p>
+            </section>
+        </main>
+
+        <footer>
+            <p>CGB - Part of the Just Land Metaverse. Secured by ENKI Engine.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
