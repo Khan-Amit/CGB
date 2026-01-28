@@ -1,4 +1,8 @@
 /* style.css - CGB (Crypto Gift Box) */
+/* Hide page until password entered */
+body {
+    display: none;
+}
 :root {
     --primary: #8a2be2;
     --primary-dark: #5d1a9b;
