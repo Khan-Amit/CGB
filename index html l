@@ -3,65 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CGB | Crypto Gift Box</title>
+    <title>Bright Future Gift Box</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Main Container -->
     <div class="container">
-        <header>
-            <h1><i class="fas fa-gem"></i> CGB</h1>
-            <p class="subtitle">Crypto Gift Box - Just Land Pioneer Portal</p>
-            <p class="philosophy">DESIRE → CONNECT → VERIFY → MINT → RECEIVE</p>
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-gift"></i> Bright Future Gift Box</h1>
+            <p class="tagline">Open to receive inspiration for your journey ahead</p>
         </header>
 
-        <main>
-            <section class="module">
-                <h2><i class="fas fa-brain"></i> 1. State Your Desire</h2>
-                <p>I desire to receive the Pioneer Seed NFT for Just Land.</p>
-                <button id="connectWalletBtn" class="btn">
-                    <i class="fas fa-wallet"></i> Connect Your Crypto Wallet
-                </button>
-                <div id="walletStatus" class="hidden">
-                    <p><i class="fas fa-check-circle success-icon"></i> Connected: <span id="walletAddress">...</span></p>
+        <!-- Connection Panel -->
+        <div class="panel connection-panel" id="connectionPanel">
+            <div class="panel-header">
+                <i class="fas fa-plug"></i>
+                <h2>Step 1: Connect to Your Future</h2>
+            </div>
+            <div class="panel-body">
+                <p class="instruction">To open your gift box, please connect to the required field below.</p>
+                
+                <div class="input-group">
+                    <label for="futureField">
+                        <i class="fas fa-star"></i> Required Connection Field
+                    </label>
+                    <div class="connection-field" id="connectionField">
+                        <div class="field-placeholder">
+                            <i class="fas fa-link"></i>
+                            <span>Click "Connect" to establish your future connection</span>
+                        </div>
+                        <div class="field-status" id="fieldStatus">
+                            Not connected
+                        </div>
+                    </div>
                 </div>
-            </section>
 
-            <section class="module">
-                <h2><i class="fas fa-link"></i> 2. & 3. Connect & Verify</h2>
-                <div class="flow-diagram">
-                    <div class="flow-step"><div class="flow-icon">💭</div><p>Desire</p></div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-step"><div class="flow-icon">🔗</div><p>Connect</p></div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-step"><div class="flow-icon">🤖</div><p>ENKI Verify</p></div>
+                <div class="button-group">
+                    <button class="btn connect-btn" id="connectBtn">
+                        <i class="fas fa-bolt"></i> Connect Now
+                    </button>
+                    <button class="btn info-btn" id="infoBtn">
+                        <i class="fas fa-info-circle"></i> Why Connect?
+                    </button>
                 </div>
-                <p id="verifyStatus">Awaiting wallet connection...</p>
-                <button id="verifyBtn" class="btn" disabled>
-                    <i class="fas fa-search"></i> Verify Eligibility
-                </button>
-            </section>
 
-            <section class="module">
-                <h2><i class="fas fa-gem"></i> 4. & 5. Mint & Receive</h2>
-                <div class="reward-box" id="rewardBox">
-                    <div class="nft-display">🌌</div>
-                    <h3 id="rewardTitle">Your Just Land Seed Awaits</h3>
-                    <p id="rewardMessage">Connect, verify, and mint your unique Seed NFT.</p>
-                    <div class="reward-details hidden" id="rewardDetails"></div>
+                <div class="connection-info" id="connectionInfo">
+                    <p><strong>Why connecting matters:</strong> This establishes a symbolic link to your future self, aligning your present energy with your brightest potential.</p>
                 </div>
-                <button id="mintBtn" class="btn" disabled>
-                    <i class="fas fa-hammer"></i> Mint My Seed NFT
-                </button>
-                <p id="mintStatus"></p>
-            </section>
-        </main>
+            </div>
+        </div>
 
-        <footer>
-            <p>CGB - Part of the Just Land Metaverse. Secured by ENKI Engine.</p>
+        <!-- Gift Box Panel (Hidden Initially) -->
+        <div class="panel gift-panel" id="giftPanel" style="display: none;">
+            <div class="panel-header">
+                <i class="fas fa-box-open"></i>
+                <h2>Step 2: Open Your Gift</h2>
+            </div>
+            <div class="panel-body">
+                <div class="gift-container">
+                    <div class="gift-box" id="giftBox">
+                        <div class="gift-lid">
+                            <div class="ribbon"></div>
+                        </div>
+                        <div class="gift-body">
+                            <div class="shine"></div>
+                        </div>
+                        <div class="gift-label">Your Future</div>
+                    </div>
+                    <p class="gift-instruction">Click the gift box to open your bright future message</p>
+                </div>
+
+                <div class="message-container" id="messageContainer" style="display: none;">
+                    <div class="message-card">
+                        <div class="message-header">
+                            <i class="fas fa-quote-left"></i>
+                            <h3>Your Bright Future Message</h3>
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <div class="message-content" id="futureMessage">
+                            <!-- Message will appear here -->
+                        </div>
+                        <div class="message-footer">
+                            <button class="btn share-btn" id="shareBtn">
+                                <i class="fas fa-share-alt"></i> Share Inspiration
+                            </button>
+                            <button class="btn reset-btn" id="resetBtn">
+                                <i class="fas fa-redo"></i> Get Another
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-container">
+            <div class="progress-step active" id="step1">
+                <div class="step-number">1</div>
+                <div class="step-text">Connect</div>
+            </div>
+            <div class="progress-step" id="step2">
+                <div class="step-number">2</div>
+                <div class="step-text">Open Gift</div>
+            </div>
+            <div class="progress-step" id="step3">
+                <div class="step-number">3</div>
+                <div class="step-text">Receive Future</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Bright Future Gift Box • Made with <i class="fas fa-heart"></i> for your journey</p>
+            <p class="enki-signature">🕉️ ENKI's Waters Flow • Future Aligned 🕉️</p>
         </footer>
     </div>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.0/dist/web3.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
