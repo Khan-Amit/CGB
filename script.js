@@ -1,187 +1,258 @@
-// script.js - CGB Main Controller
-const SITE_PASSWORD = "JUSTLAND2024";
-let isAuthenticated = false;
-
-function checkPassword() {
-    const input = prompt("Enter CGB Password:");
-    if (input === SITE_PASSWORD) {
-        isAuthenticated = true;
-        document.body.style.display = 'block';
-        alert('Welcome! Connect your wallet to continue.');
-    } else {
-        alert('Wrong password!');
-        document.body.style.display = 'none';
-        location.reload();
-    }
-}
-
-// Run password check when page loads
-window.onload = checkPassword;
-
-// ===== ORIGINAL CGB CODE =====
+// script.js - Bright Future Gift Box
+// ENKI's Future-Ready Script
 
 document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
-    const connectWalletBtn = document.getElementById('connectWalletBtn');
-    const walletStatus = document.getElementById('walletStatus');
-    const walletAddress = document.getElementById('walletAddress');
-    const verifyBtn = document.getElementById('verifyBtn');
-    const verifyStatus = document.getElementById('verifyStatus');
-    const mintBtn = document.getElementById('mintBtn');
-    const mintStatus = document.getElementById('mintStatus');
-    const rewardBox = document.getElementById('rewardBox');
-    const rewardTitle = document.getElementById('rewardTitle');
-    const rewardMessage = document.getElementById('rewardMessage');
-    const rewardDetails = document.getElementById('rewardDetails');
+    // Elements
+    const connectionField = document.getElementById('connectionField');
+    const fieldStatus = document.getElementById('fieldStatus');
+    const connectBtn = document.getElementById('connectBtn');
+    const infoBtn = document.getElementById('infoBtn');
+    const connectionInfo = document.getElementById('connectionInfo');
+    const connectionPanel = document.getElementById('connectionPanel');
+    const giftPanel = document.getElementById('giftPanel');
+    const giftBox = document.getElementById('giftBox');
+    const messageContainer = document.getElementById('messageContainer');
+    const futureMessage = document.getElementById('futureMessage');
+    const shareBtn = document.getElementById('shareBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
 
-    // State
-    let userWallet = null;
-    let userAddress = null;
-    let isEligible = false;
+    // Future Messages Database
+    const futureMessages = [
+        "Your future shines brighter than a thousand suns. Keep walking your path with courage.",
+        "The seeds you plant today will become the forest you walk through tomorrow. Plant wisely.",
+        "Your journey is uniquely yours. Trust the timing of your life's unfolding.",
+        "The universe is conspiring in your favor. Your brightest days are ahead.",
+        "Your potential is limitless. Every small step today is a giant leap for tomorrow.",
+        "The future belongs to those who believe in the beauty of their dreams. Keep dreaming.",
+        "Your energy creates your reality. Focus on what you want to manifest.",
+        "You are exactly where you need to be. The next chapter is being written now.",
+        "Your resilience is preparing you for something wonderful. Don't give up.",
+        "The brightest futures are built on moments of hope, courage, and kindness.",
+        "You carry within you everything needed to create a magnificent future.",
+        "Every ending is a new beginning in disguise. Your story is just getting started.",
+        "The stars have aligned for your success. Trust your journey.",
+        "Your future self is already proud of you for taking steps today.",
+        "The world needs your unique light. Shine brightly and unapologetically."
+    ];
 
-    // 1. Connect Wallet
-    connectWalletBtn.addEventListener('click', async () => {
-        try {
-            if (typeof window.ethereum === 'undefined') {
-                alert('Please install MetaMask!');
-                return;
-            }
+    // Connection State
+    let isConnected = false;
+    let connectionAttempts = 0;
 
-            const accounts = await window.ethereum.request({ 
-                method: 'eth_requestAccounts' 
-            });
-            
-            userWallet = window.ethereum;
-            userAddress = accounts[0];
-            
-            // Display shortened address
-            const shortAddr = userAddress.substring(0, 6) + '...' + userAddress.substring(38);
-            walletAddress.textContent = shortAddr;
-            walletStatus.classList.remove('hidden');
-            connectWalletBtn.innerHTML = '<i class="fas fa-check"></i> Connected';
-            connectWalletBtn.disabled = true;
-            
-            // Enable verify button
-            verifyBtn.disabled = false;
-            verifyStatus.textContent = 'Wallet connected. Ready for verification.';
-            verifyStatus.style.color = '#00ffaa';
-            
-        } catch (error) {
-            console.error('Connection error:', error);
-            verifyStatus.textContent = 'Connection failed. Please try again.';
-            verifyStatus.style.color = '#ff5555';
-        }
-    });
-
-    // 2. Verify Eligibility
-    verifyBtn.addEventListener('click', async () => {
-        if (!userAddress) return;
+    // Initialize
+    function init() {
+        console.log("🕉️ ENKI: Bright Future Gift Box Initialized");
         
-        verifyBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-        verifyBtn.disabled = true;
-        
-        // Simulate blockchain check
-        setTimeout(() => {
-            isEligible = Math.random() > 0.2;
-            
-            if (isEligible) {
-                verifyStatus.innerHTML = '<i class="fas fa-check-circle"></i> Eligible! You qualify for a Seed NFT.';
-                verifyStatus.style.color = '#00ffaa';
-                
-                // Enable mint button
-                mintBtn.disabled = false;
-                mintBtn.innerHTML = '<i class="fas fa-hammer"></i> Mint My Seed NFT';
-                
-                // Update reward box
-                rewardBox.style.border = '2px solid #00ffaa';
-                rewardMessage.textContent = 'You are verified! Ready to mint your Seed.';
-                
-            } else {
-                verifyStatus.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Not eligible yet.';
-                verifyStatus.style.color = '#ff5555';
-                mintBtn.disabled = true;
-            }
-            
-            verifyBtn.innerHTML = '<i class="fas fa-search"></i> Verify Eligibility';
-            verifyBtn.disabled = false;
-        }, 1500);
-    });
-
-    // 3. Mint NFT
-    mintBtn.addEventListener('click', async () => {
-        if (!userAddress || !isEligible) return;
-        
-        mintBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Minting...';
-        mintBtn.disabled = true;
-        mintStatus.textContent = 'Minting your Seed NFT...';
-        mintStatus.style.color = '#00ffaa';
-        
-        // Simulate minting delay
-        setTimeout(() => {
-            const seedTypes = ['Cosmic Seed', 'Temporal Seed', 'Harmony Seed', 'Nova Seed'];
-            const seedType = seedTypes[Math.floor(Math.random() * seedTypes.length)];
-            const tokenId = Date.now().toString().slice(-6);
-            
-            // Update UI
-            rewardBox.querySelector('.nft-display').textContent = '🌱';
-            rewardTitle.textContent = `Your ${seedType}`;
-            rewardMessage.textContent = 'Successfully minted to your wallet!';
-            rewardDetails.classList.remove('hidden');
-            rewardDetails.innerHTML = `
-                <p><strong>Seed Type:</strong> ${seedType}</p>
-                <p><strong>Token ID:</strong> ${tokenId}</p>
-                <p><strong>Owner:</strong> ${userAddress.substring(0,10)}...</p>
-                <p><strong>Message:</strong> This Seed holds potential for Just Land.</p>
-            `;
-            
-            rewardBox.style.background = 'linear-gradient(135deg, rgba(0, 212, 170, 0.3), rgba(138, 43, 226, 0.3))';
-            
-            mintStatus.innerHTML = '<i class="fas fa-check-circle"></i> Mint successful!';
-            
-            // Celebrate
-            createConfetti();
-            
-            mintBtn.innerHTML = '<i class="fas fa-redo"></i> Mint Another';
-            mintBtn.disabled = false;
-        }, 2000);
-    });
-
-    // Confetti effect
-    function createConfetti() {
-        const confettiCount = 30;
-        const confettiTypes = ['✨', '🌟', '⭐', '🎉', '🌱'];
-        
-        for (let i = 0; i < confettiCount; i++) {
-            setTimeout(() => {
-                const confetti = document.createElement('div');
-                confetti.textContent = confettiTypes[Math.floor(Math.random() * confettiTypes.length)];
-                confetti.style.position = 'fixed';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.top = '-20px';
-                confetti.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                confetti.style.opacity = '0.9';
-                confetti.style.zIndex = '9999';
-                confetti.style.pointerEvents = 'none';
-                confetti.style.animation = `fall ${Math.random() * 2 + 1}s linear forwards`;
-                document.body.appendChild(confetti);
-                
-                setTimeout(() => confetti.remove(), 2000);
-            }, i * 100);
-        }
-        
-        // Add animation CSS if not present
-        if (!document.getElementById('confettiStyle')) {
-            const style = document.createElement('style');
-            style.id = 'confettiStyle';
-            style.textContent = `
-                @keyframes fall {
-                    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-                    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
+        // Check if already connected (from previous session)
+        const savedConnection = localStorage.getItem('brightFutureConnected');
+        if (savedConnection === 'true') {
+            simulateConnection();
         }
     }
 
-    console.log('CGB - Crypto Gift Box initialized');
+    // Simulate Connection Process
+    function simulateConnection() {
+        if (isConnected) return;
+        
+        connectionAttempts++;
+        isConnected = true;
+        
+        // Update UI
+        connectBtn.innerHTML = '<i class="fas fa-check"></i> Connected';
+        connectBtn.disabled = true;
+        connectBtn.style.opacity = '0.7';
+        connectBtn.style.cursor = 'default';
+        
+        // Animate connection
+        fieldStatus.textContent = 'Connecting...';
+        fieldStatus.className = 'field-status';
+        
+        // Simulate connection process
+        setTimeout(() => {
+            fieldStatus.textContent = 'Establishing link...';
+            fieldStatus.style.color = '#ffb347';
+        }, 500);
+        
+        setTimeout(() => {
+            fieldStatus.textContent = 'Future aligned ✓';
+            fieldStatus.className = 'field-status connected';
+            connectionField.classList.add('connected');
+            
+            // Show success
+            showNotification('Connection established! Your future is now linked.', 'success');
+            
+            // Move to next step
+            setTimeout(() => {
+                connectionPanel.style.display = 'none';
+                giftPanel.style.display = 'block';
+                updateProgress(2);
+            }, 1000);
+            
+            // Save connection state
+            localStorage.setItem('brightFutureConnected', 'true');
+        }, 1500);
+    }
+
+    // Show Gift Message
+    function showRandomMessage() {
+        const randomIndex = Math.floor(Math.random() * futureMessages.length);
+        const message = futureMessages[randomIndex];
+        
+        // Animate gift opening
+        giftBox.classList.add('opening');
+        
+        setTimeout(() => {
+            giftBox.classList.add('open');
+            giftBox.classList.remove('opening');
+            
+            // Show message after delay
+            setTimeout(() => {
+                futureMessage.textContent = message;
+                messageContainer.style.display = 'block';
+                updateProgress(3);
+                
+                // Save this message
+                localStorage.setItem('lastFutureMessage', message);
+            }, 800);
+        }, 500);
+    }
+
+    // Update Progress Steps
+    function updateProgress(step) {
+        // Reset all
+        step1.classList.remove('active');
+        step2.classList.remove('active');
+        step3.classList.remove('active');
+        
+        // Activate up to current step
+        if (step >= 1) step1.classList.add('active');
+        if (step >= 2) step2.classList.add('active');
+        if (step >= 3) step3.classList.add('active');
+    }
+
+    // Share Message
+    function shareMessage() {
+        const message = futureMessage.textContent;
+        const shareText = `My Bright Future Message: "${message}" - Discover yours at ${window.location.href}`;
+        
+        if (navigator.share) {
+            navigator.share({
+                title: 'My Bright Future Gift',
+                text: shareText,
+                url: window.location.href
+            });
+        } else {
+            // Fallback: Copy to clipboard
+            navigator.clipboard.writeText(shareText).then(() => {
+                showNotification('Message copied to clipboard!', 'success');
+            });
+        }
+    }
+
+    // Show Notification
+    function showNotification(message, type = 'info') {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+            <span>${message}</span>
+        `;
+        
+        // Style it
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? 'rgba(0, 255, 170, 0.9)' : 'rgba(0, 255, 234, 0.9)'};
+            color: #000;
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            max-width: 300px;
+        `;
+        
+        // Add animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        document.body.appendChild(notification);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            notification.style.animation = 'slideIn 0.3s ease reverse';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 3000);
+    }
+
+    // Reset Everything
+    function resetExperience() {
+        isConnected = false;
+        connectionAttempts = 0;
+        
+        // Reset UI
+        connectBtn.innerHTML = '<i class="fas fa-bolt"></i> Connect Now';
+        connectBtn.disabled = false;
+        connectBtn.style.opacity = '1';
+        connectBtn.style.cursor = 'pointer';
+        
+        fieldStatus.textContent = 'Not connected';
+        fieldStatus.className = 'field-status';
+        connectionField.classList.remove('connected');
+        
+        giftBox.classList.remove('open');
+        messageContainer.style.display = 'none';
+        
+        connectionPanel.style.display = 'block';
+        giftPanel.style.display = 'none';
+        
+        updateProgress(1);
+        
+        localStorage.removeItem('brightFutureConnected');
+        showNotification('Experience reset. Ready for a new connection!', 'success');
+    }
+
+    // Event Listeners
+    connectBtn.addEventListener('click', simulateConnection);
+    
+    infoBtn.addEventListener('click', function() {
+        connectionInfo.style.display = connectionInfo.style.display === 'block' ? 'none' : 'block';
+    });
+    
+    giftBox.addEventListener('click', function() {
+        if (!isConnected) {
+            showNotification('Please connect first to open your gift!', 'info');
+            return;
+        }
+        
+        if (!giftBox.classList.contains('open')) {
+            showRandomMessage();
+        }
+    });
+    
+    shareBtn.addEventListener('click', shareMessage);
+    
+    resetBtn.addEventListener('click', resetExperience);
+
+    // Initialize
+    init();
+    updateProgress(1);
 });
