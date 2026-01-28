@@ -1,42 +1,38 @@
-/* ENKI FORCE: GITHUB PAGES FIX - PREVENT README FROM SHOWING */
-/* This ensures black background and proper display */
+/* style.css - GUARANTEED BLACK */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* RESET EVERYTHING FIRST */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* ABSOLUTE BLACK BACKGROUND - NO EXCEPTIONS */
 html, body {
-    background-color: #000000 !important;
-    background-image: none !important;
-    color: #ffffff;
-    font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
-    width: 100%;
-    overflow-x: hidden;
-}
-
-body {
     background: #000000 !important;
+    color: white;
+    font-family: sans-serif;
+    min-height: 100vh;
 }
 
-/* Remove any potential Jekyll/GitHub Pages default styles */
-body::before,
-body::after,
-header::before,
-header::after,
-.container::before,
-.container::after {
-    display: none !important;
-    content: none !important;
-}
-
-/* Force container to be visible */
 .container {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #00ffea;
+    text-align: center;
+    margin: 40px 0;
+    font-size: 2.5rem;
+}
+
+.wallet-btn {
+    background: linear-gradient(135deg, #00ffea, #ff00ff);
+    color: black;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.2rem;
+    border-radius: 15px;
+    margin: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    margin: 20px auto;
 }
