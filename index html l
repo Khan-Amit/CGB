@@ -6,123 +6,161 @@
     <title>Bright Future Gift Box</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Main Container -->
     <div class="container">
         <!-- Header -->
         <header class="header">
             <h1><i class="fas fa-gift"></i> Bright Future Gift Box</h1>
-            <p class="tagline">Open to receive inspiration for your journey ahead</p>
+            <p class="tagline">Connect your wallet to receive your bright future message</p>
         </header>
 
-        <!-- Connection Panel -->
-        <div class="panel connection-panel" id="connectionPanel">
+        <!-- Wallet Connection Section -->
+        <div class="panel wallet-panel">
             <div class="panel-header">
-                <i class="fas fa-plug"></i>
-                <h2>Step 1: Connect to Your Future</h2>
+                <i class="fas fa-wallet"></i>
+                <h2>Connect Your Wallet</h2>
             </div>
+            
             <div class="panel-body">
-                <p class="instruction">To open your gift box, please connect to the required field below.</p>
+                <div class="wallet-options">
+                    <button class="wallet-btn" id="metamaskBtn">
+                        <i class="fab fa-ethereum"></i>
+                        <span>MetaMask</span>
+                        <small>Most Popular</small>
+                    </button>
+                    
+                    <button class="wallet-btn" id="walletconnectBtn">
+                        <i class="fas fa-qrcode"></i>
+                        <span>WalletConnect</span>
+                        <small>Mobile Wallets</small>
+                    </button>
+                    
+                    <button class="wallet-btn" id="coinbaseBtn">
+                        <i class="fab fa-bitcoin"></i>
+                        <span>Coinbase Wallet</span>
+                        <small>Easy Connection</small>
+                    </button>
+                </div>
                 
-                <div class="input-group">
-                    <label for="futureField">
-                        <i class="fas fa-star"></i> Required Connection Field
-                    </label>
-                    <div class="connection-field" id="connectionField">
-                        <div class="field-placeholder">
-                            <i class="fas fa-link"></i>
-                            <span>Click "Connect" to establish your future connection</span>
-                        </div>
-                        <div class="field-status" id="fieldStatus">
-                            Not connected
-                        </div>
+                <div class="connection-status" id="connectionStatus">
+                    <div class="status-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <div class="status-text">
+                        <h3>Wallet Not Connected</h3>
+                        <p>Connect a wallet to unlock your bright future gift</p>
                     </div>
                 </div>
-
-                <div class="button-group">
-                    <button class="btn connect-btn" id="connectBtn">
-                        <i class="fas fa-bolt"></i> Connect Now
+                
+                <div class="connected-wallet" id="connectedWallet" style="display: none;">
+                    <div class="wallet-info">
+                        <div class="wallet-address" id="walletAddress">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Connected: 0x0000...0000</span>
+                        </div>
+                        <div class="wallet-balance" id="walletBalance">
+                            <i class="fas fa-coins"></i>
+                            <span>Balance: 0 ETH</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn open-gift-btn" id="openGiftBtn">
+                        <i class="fas fa-box-open"></i> Open Your Bright Future Gift
                     </button>
-                    <button class="btn info-btn" id="infoBtn">
-                        <i class="fas fa-info-circle"></i> Why Connect?
-                    </button>
-                </div>
-
-                <div class="connection-info" id="connectionInfo">
-                    <p><strong>Why connecting matters:</strong> This establishes a symbolic link to your future self, aligning your present energy with your brightest potential.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Gift Box Panel (Hidden Initially) -->
+        <!-- Gift Box Section -->
         <div class="panel gift-panel" id="giftPanel" style="display: none;">
             <div class="panel-header">
-                <i class="fas fa-box-open"></i>
-                <h2>Step 2: Open Your Gift</h2>
+                <i class="fas fa-star"></i>
+                <h2>Your Bright Future Awaits</h2>
             </div>
+            
             <div class="panel-body">
-                <div class="gift-container">
+                <div class="gift-animation">
                     <div class="gift-box" id="giftBox">
-                        <div class="gift-lid">
-                            <div class="ribbon"></div>
-                        </div>
+                        <div class="gift-lid"></div>
                         <div class="gift-body">
-                            <div class="shine"></div>
-                        </div>
-                        <div class="gift-label">Your Future</div>
-                    </div>
-                    <p class="gift-instruction">Click the gift box to open your bright future message</p>
-                </div>
-
-                <div class="message-container" id="messageContainer" style="display: none;">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <i class="fas fa-quote-left"></i>
-                            <h3>Your Bright Future Message</h3>
-                            <i class="fas fa-quote-right"></i>
-                        </div>
-                        <div class="message-content" id="futureMessage">
-                            <!-- Message will appear here -->
-                        </div>
-                        <div class="message-footer">
-                            <button class="btn share-btn" id="shareBtn">
-                                <i class="fas fa-share-alt"></i> Share Inspiration
-                            </button>
-                            <button class="btn reset-btn" id="resetBtn">
-                                <i class="fas fa-redo"></i> Get Another
-                            </button>
+                            <div class="sparkle"></div>
+                            <div class="sparkle"></div>
+                            <div class="sparkle"></div>
                         </div>
                     </div>
+                    <div class="gift-label">Click to Open</div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Progress -->
-        <div class="progress-container">
-            <div class="progress-step active" id="step1">
-                <div class="step-number">1</div>
-                <div class="step-text">Connect</div>
-            </div>
-            <div class="progress-step" id="step2">
-                <div class="step-number">2</div>
-                <div class="step-text">Open Gift</div>
-            </div>
-            <div class="progress-step" id="step3">
-                <div class="step-number">3</div>
-                <div class="step-text">Receive Future</div>
+                
+                <div class="future-message" id="futureMessage" style="display: none;">
+                    <div class="message-header">
+                        <i class="fas fa-quote-left"></i>
+                        <h3>Your Bright Future Message</h3>
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <div class="message-content" id="messageContent">
+                        <!-- Message appears here -->
+                    </div>
+                    <div class="message-actions">
+                        <button class="btn share-btn" id="shareBtn">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                        <button class="btn save-btn" id="saveBtn">
+                            <i class="fas fa-save"></i> Save
+                        </button>
+                        <button class="btn disconnect-btn" id="disconnectBtn">
+                            <i class="fas fa-sign-out-alt"></i> Disconnect
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Footer -->
         <footer class="footer">
-            <p>Bright Future Gift Box • Made with <i class="fas fa-heart"></i> for your journey</p>
-            <p class="enki-signature">🕉️ ENKI's Waters Flow • Future Aligned 🕉️</p>
+            <div class="footer-content">
+                <p>Bright Future Gift Box • Made with <i class="fas fa-heart"></i> for your journey</p>
+                <p class="enki-note">🕉️ ENKI's Waters Flow • Connect for Your Future • Pure Black Theme 🕉️</p>
+                <div class="wallet-help">
+                    <button class="help-btn" id="helpBtn">
+                        <i class="fas fa-question-circle"></i> Need help connecting wallet?
+                    </button>
+                </div>
+            </div>
         </footer>
+    </div>
+
+    <!-- Wallet Connection Help Modal -->
+    <div class="modal" id="helpModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-life-ring"></i> Wallet Connection Guide</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="guide-step">
+                    <h4><i class="fas fa-mobile-alt"></i> On Mobile:</h4>
+                    <p>1. Install MetaMask app from your app store</p>
+                    <p>2. Open MetaMask and create/import wallet</p>
+                    <p>3. Return here and tap "MetaMask"</p>
+                    <p>4. Approve connection in the MetaMask app</p>
+                </div>
+                <div class="guide-step">
+                    <h4><i class="fas fa-desktop"></i> On Desktop:</h4>
+                    <p>1. Install MetaMask extension for Chrome/Firefox</p>
+                    <p>2. Create/import wallet</p>
+                    <p>3. Click "MetaMask" button above</p>
+                    <p>4. Approve connection in MetaMask popup</p>
+                </div>
+                <div class="guide-step">
+                    <h4><i class="fas fa-shield-alt"></i> Security Note:</h4>
+                    <p>• We never access your private keys</p>
+                    <p>• You only share your public address</p>
+                    <p>• You can disconnect anytime</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
