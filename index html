@@ -4,276 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bright Future Gift Box</title>
-    <meta name="description" content="Connect your wallet to receive your bright future message">
-    
-    <!-- FORCE GitHub Pages to recognize this as main page -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Styles & Fonts -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎁</text></svg>">
-    
-    <!-- Prevent caching during development -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <style>
+        /* Immediate black background */
+        body {
+            background: #000000 !important;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            font-family: sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: #00ffea;
+            margin: 40px 0;
+        }
+        .wallet-btn {
+            background: linear-gradient(135deg, #00ffea, #ff00ff);
+            color: black;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            border-radius: 15px;
+            margin: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .status {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        .footer {
+            margin-top: 50px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1><i class="fas fa-gift"></i> Bright Future Gift Box</h1>
-            <p class="tagline">Connect your wallet to receive your personalized future message</p>
-        </header>
-
-        <!-- Wallet Connection Section -->
-        <div class="panel connection-panel">
-            <div class="panel-header">
-                <i class="fas fa-plug"></i>
-                <h2>Step 1: Connect Your Wallet</h2>
-            </div>
-            
-            <div class="panel-body">
-                <p class="instruction">Choose your wallet provider to begin your journey:</p>
-                
-                <div class="wallet-buttons">
-                    <button class="wallet-btn metamask" id="metamaskBtn">
-                        <div class="wallet-icon">
-                            <i class="fab fa-ethereum"></i>
-                        </div>
-                        <div class="wallet-info">
-                            <h3>MetaMask</h3>
-                            <p>Browser & Mobile</p>
-                        </div>
-                        <div class="wallet-status" id="metamaskStatus">
-                            <i class="fas fa-plug"></i> Connect
-                        </div>
-                    </button>
-                    
-                    <button class="wallet-btn walletconnect" id="walletconnectBtn">
-                        <div class="wallet-icon">
-                            <i class="fas fa-qrcode"></i>
-                        </div>
-                        <div class="wallet-info">
-                            <h3>WalletConnect</h3>
-                            <p>Any Wallet App</p>
-                        </div>
-                        <div class="wallet-status">
-                            <i class="fas fa-external-link-alt"></i> Scan
-                        </div>
-                    </button>
-                    
-                    <button class="wallet-btn coinbase" id="coinbaseBtn">
-                        <div class="wallet-icon">
-                            <i class="fab fa-bitcoin"></i>
-                        </div>
-                        <div class="wallet-info">
-                            <h3>Coinbase Wallet</h3>
-                            <p>Easy Setup</p>
-                        </div>
-                        <div class="wallet-status">
-                            <i class="fas fa-wallet"></i> Connect
-                        </div>
-                    </button>
-                </div>
-                
-                <!-- Connection Status -->
-                <div class="status-container" id="statusContainer">
-                    <div class="status-header">
-                        <i class="fas fa-info-circle"></i>
-                        <h3>Connection Status</h3>
-                    </div>
-                    <div class="status-content">
-                        <div class="status-item">
-                            <span class="status-label">Wallet:</span>
-                            <span class="status-value" id="walletStatus">Not connected</span>
-                        </div>
-                        <div class="status-item">
-                            <span class="status-label">Network:</span>
-                            <span class="status-value" id="networkStatus">Unknown</span>
-                        </div>
-                        <div class="status-item">
-                            <span class="status-label">Account:</span>
-                            <span class="status-value" id="accountStatus">0x0000...0000</span>
-                        </div>
-                        <div class="status-item">
-                            <span class="status-label">Balance:</span>
-                            <span class="status-value" id="balanceStatus">0 ETH</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Action Buttons -->
-                <div class="action-buttons">
-                    <button class="btn primary-btn" id="connectAllBtn">
-                        <i class="fas fa-bolt"></i> Quick Connect
-                    </button>
-                    <button class="btn secondary-btn" id="disconnectBtn">
-                        <i class="fas fa-sign-out-alt"></i> Disconnect
-                    </button>
-                    <button class="btn help-btn" id="helpBtn">
-                        <i class="fas fa-question-circle"></i> Need Help?
-                    </button>
-                </div>
-            </div>
+        <h1>🎁 Bright Future Gift Box</h1>
+        <p>Connect your wallet to receive your personalized future message</p>
+        
+        <div class="status">
+            <h2>Wallet Connection</h2>
+            <p id="statusText">Not connected</p>
+            <button class="wallet-btn" id="connectBtn">🔗 Connect Wallet</button>
         </div>
-
-        <!-- Gift Box Section (Initially Hidden) -->
-        <div class="panel gift-panel" id="giftPanel" style="display: none;">
-            <div class="panel-header">
-                <i class="fas fa-box-open"></i>
-                <h2>Step 2: Open Your Gift</h2>
-            </div>
-            
-            <div class="panel-body">
-                <div class="gift-instruction">
-                    <p>Your wallet is connected! Click the gift box below to reveal your bright future message:</p>
-                </div>
-                
-                <div class="gift-box-container">
-                    <div class="gift-box" id="giftBox">
-                        <div class="gift-lid">
-                            <div class="ribbon"></div>
-                        </div>
-                        <div class="gift-body">
-                            <div class="sparkle s1"></div>
-                            <div class="sparkle s2"></div>
-                            <div class="sparkle s3"></div>
-                        </div>
-                        <div class="gift-shadow"></div>
-                    </div>
-                    <p class="click-hint">Click to open!</p>
-                </div>
-                
-                <!-- Message Display (Initially Hidden) -->
-                <div class="message-container" id="messageContainer" style="display: none;">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <i class="fas fa-star"></i>
-                            <h3>Your Bright Future Awaits</h3>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="message-content">
-                            <div class="quote-mark left">"</div>
-                            <div class="message-text" id="futureMessage">
-                                <!-- Message will appear here -->
-                            </div>
-                            <div class="quote-mark right">"</div>
-                        </div>
-                        <div class="message-footer">
-                            <div class="message-meta">
-                                <span><i class="far fa-calendar"></i> Generated just for you</span>
-                                <span><i class="fas fa-user-circle"></i> Connected Wallet</span>
-                            </div>
-                            <div class="message-actions">
-                                <button class="btn share-msg-btn" id="shareMsgBtn">
-                                    <i class="fas fa-share-alt"></i> Share
-                                </button>
-                                <button class="btn save-msg-btn" id="saveMsgBtn">
-                                    <i class="fas fa-save"></i> Save
-                                </button>
-                                <button class="btn new-msg-btn" id="newMsgBtn">
-                                    <i class="fas fa-sync"></i> New Message
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-links">
-                    <a href="#" class="footer-link" id="refreshPage"><i class="fas fa-redo"></i> Refresh Page</a>
-                    <a href="https://github.com/Khan-Amit/CGB" class="footer-link" target="_blank"><i class="fab fa-github"></i> View Source</a>
-                    <a href="#" class="footer-link" id="clearCache"><i class="fas fa-trash"></i> Clear Cache</a>
-                </div>
-                <div class="footer-text">
-                    <p>Bright Future Gift Box • Made with <i class="fas fa-heart"></i> for your journey ahead</p>
-                    <p class="enki-signature">🕉️ ENKI's Waters Flow • Future Connected • Pure Black Theme 🕉️</p>
-                </div>
-                <div class="cache-notice" id="cacheNotice">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span>If page looks old, clear cache and refresh</span>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Help Modal -->
-    <div class="modal-overlay" id="helpModal" style="display: none;">
-        <div class="modal">
-            <div class="modal-header">
-                <h3><i class="fas fa-life-ring"></i> Connection Help</h3>
-                <button class="close-modal" id="closeModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="help-section">
-                    <h4><i class="fas fa-mobile-alt"></i> Mobile Users:</h4>
-                    <p>1. Install MetaMask from your app store</p>
-                    <p>2. Open the app and create/import wallet</p>
-                    <p>3. Return here and tap "MetaMask"</p>
-                    <p>4. Approve the connection request</p>
-                </div>
-                <div class="help-section">
-                    <h4><i class="fas fa-desktop"></i> Desktop Users:</h4>
-                    <p>1. Install MetaMask browser extension</p>
-                    <p>2. Click the extension icon to set up</p>
-                    <p>3. Click "MetaMask" button above</p>
-                    <p>4. Approve connection in the popup</p>
-                </div>
-                <div class="help-section">
-                    <h4><i class="fas fa-sync"></i> Page Not Updating?</h4>
-                    <p>• Hard refresh: Ctrl+F5 (Windows) or Cmd+Shift+R (Mac)</p>
-                    <p>• Try incognito/private browsing mode</p>
-                    <p>• Wait 2 minutes after GitHub updates</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn modal-btn" id="forceRefreshBtn">
-                    <i class="fas fa-bolt"></i> Force Refresh Now
-                </button>
-            </div>
+        
+        <div class="footer">
+            <p>🕉️ ENKI's Pure Black Theme • Wallet Ready • Future Connected</p>
+            <p><small>GitHub Pages Fixed Version</small></p>
         </div>
     </div>
-
-    <!-- Scripts -->
-    <!-- Web3.js for wallet interaction -->
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.0/dist/web3.min.js"></script>
     
-    <!-- Main Script -->
-    <script src="script.js"></script>
-    
-    <!-- Force GitHub Pages to recognize this as main content -->
     <script>
-        // Prevent GitHub Pages from defaulting to README
-        if (window.location.pathname === '/' || window.location.pathname === '/CGB/') {
-            document.title = "Bright Future Gift Box - Main Page";
-        }
-        
-        // Clear any cached version
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                for(let registration of registrations) {
-                    registration.unregister();
-                }
-            });
-        }
-        
-        // Add cache-busting parameter
-        const links = document.querySelectorAll('link[rel="stylesheet"], script[src]');
-        links.forEach(link => {
-            const url = new URL(link.href || link.src, window.location);
-            url.searchParams.set('v', Date.now());
-            if (link.href) link.href = url.href;
-            if (link.src) link.src = url.src;
+        document.getElementById('connectBtn').addEventListener('click', function() {
+            document.getElementById('statusText').textContent = 'Connecting...';
+            document.getElementById('statusText').style.color = '#00ffea';
+            
+            setTimeout(() => {
+                document.getElementById('statusText').textContent = 'Connected! Click will open gift.';
+                document.getElementById('statusText').style.color = '#00ffaa';
+            }, 1500);
         });
     </script>
 </body>
