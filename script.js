@@ -1,13 +1,22 @@
 // script.js - CGB Main Controller
-// Add at top of script.js
 const SITE_PASSWORD = "JUSTLAND2024";
 let isAuthenticated = false;
 
 function checkPassword() {
-    const input = prompt("Enter site password:");
-    if (input === SITE_PASSWORD) isAuthenticated = true;
-    else alert("Wrong password!");
+    const input = prompt("🔐 Enter CGB Password:");
+    if (input === SITE_PASSWORD) {
+        isAuthenticated = true;
+        document.body.style.display = 'block';
+        alert("Welcome! 🎉 Connect your wallet to continue.");
+    } else {
+        alert("Wrong password! 🔒");
+        document.body.style.display = 'none';
+        location.reload();
+    }
 }
+
+// Run password check when page loads
+window.onload = checkPassword;
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const connectWalletBtn = document.getElementById('connectWalletBtn');
