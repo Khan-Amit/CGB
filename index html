@@ -4,74 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bright Future Gift Box</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        /* Immediate black background */
-        body {
-            background: #000000 !important;
+        /* EMERGENCY BLACK BACKGROUND - WILL SHOW INSTANTLY */
+        body { 
+            background: #000000 !important; 
             color: white;
             margin: 0;
             padding: 20px;
-            font-family: sans-serif;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        h1 {
-            color: #00ffea;
-            margin: 40px 0;
-        }
-        .wallet-btn {
-            background: linear-gradient(135deg, #00ffea, #ff00ff);
-            color: black;
-            border: none;
-            padding: 20px 40px;
-            font-size: 1.2rem;
-            border-radius: 15px;
-            margin: 20px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .status {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 30px 0;
-        }
-        .footer {
-            margin-top: 50px;
-            color: #666;
+            font-family: Arial, sans-serif;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎁 Bright Future Gift Box</h1>
+        <h1>🎁 BRIGHT FUTURE GIFT BOX</h1>
         <p>Connect your wallet to receive your personalized future message</p>
         
-        <div class="status">
-            <h2>Wallet Connection</h2>
-            <p id="statusText">Not connected</p>
-            <button class="wallet-btn" id="connectBtn">🔗 Connect Wallet</button>
+        <div class="wallet-section">
+            <h2>🔗 Connect Wallet</h2>
+            <button class="connect-btn" id="connectBtn">
+                <i class="fas fa-wallet"></i> Connect MetaMask
+            </button>
+            
+            <div class="status" id="status">
+                <p>Status: <span class="status-text">Not connected</span></p>
+            </div>
+            
+            <div class="gift-box" id="giftBox">
+                <div class="lid"></div>
+                <div class="body"></div>
+                <p class="gift-text">CLICK TO OPEN</p>
+            </div>
+            
+            <div class="message" id="message" style="display: none;">
+                <h3>Your Bright Future Message:</h3>
+                <p class="message-text" id="messageText"></p>
+                <button class="share-btn">📤 Share</button>
+            </div>
         </div>
         
-        <div class="footer">
-            <p>🕉️ ENKI's Pure Black Theme • Wallet Ready • Future Connected</p>
-            <p><small>GitHub Pages Fixed Version</small></p>
-        </div>
+        <footer>
+            <p>🕉️ ENKI's Black Theme • Wallet Ready • Pure #000000 Background</p>
+        </footer>
     </div>
     
+    <script src="script.js"></script>
     <script>
-        document.getElementById('connectBtn').addEventListener('click', function() {
-            document.getElementById('statusText').textContent = 'Connecting...';
-            document.getElementById('statusText').style.color = '#00ffea';
-            
-            setTimeout(() => {
-                document.getElementById('statusText').textContent = 'Connected! Click will open gift.';
-                document.getElementById('statusText').style.color = '#00ffaa';
-            }, 1500);
-        });
+        // Immediate black background check
+        console.log("ENKI: Page loaded with black background");
+        document.body.style.backgroundColor = "#000000";
     </script>
 </body>
 </html>
