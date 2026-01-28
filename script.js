@@ -18,7 +18,7 @@ function checkPassword() {
 // Run password check when page loads
 window.onload = checkPassword;
 
-// ===== ORIGINAL CGB CODE BELOW - KEEP EVERYTHING AFTER THIS LINE =====
+// ===== ORIGINAL CGB CODE =====
 
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
