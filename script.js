@@ -3,13 +3,13 @@ const SITE_PASSWORD = "JUSTLAND2024";
 let isAuthenticated = false;
 
 function checkPassword() {
-    const input = prompt("🔐 Enter CGB Password:");
+    const input = prompt("Enter CGB Password:");
     if (input === SITE_PASSWORD) {
         isAuthenticated = true;
         document.body.style.display = 'block';
-        alert("Welcome! 🎉 Connect your wallet to continue.");
+        alert('Welcome! Connect your wallet to continue.');
     } else {
-        alert("Wrong password! 🔒");
+        alert('Wrong password!');
         document.body.style.display = 'none';
         location.reload();
     }
@@ -17,6 +17,9 @@ function checkPassword() {
 
 // Run password check when page loads
 window.onload = checkPassword;
+
+// ===== ORIGINAL CGB CODE BELOW - KEEP EVERYTHING AFTER THIS LINE =====
+
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const connectWalletBtn = document.getElementById('connectWalletBtn');
@@ -77,9 +80,8 @@ document.addEventListener('DOMContentLoaded', function() {
         verifyBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
         verifyBtn.disabled = true;
         
-        // Simulate blockchain check (in real version, check balance/tokens)
+        // Simulate blockchain check
         setTimeout(() => {
-            // For demo: 80% chance of being eligible
             isEligible = Math.random() > 0.2;
             
             if (isEligible) {
@@ -116,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Simulate minting delay
         setTimeout(() => {
-            // Generate unique seed
             const seedTypes = ['Cosmic Seed', 'Temporal Seed', 'Harmony Seed', 'Nova Seed'];
             const seedType = seedTypes[Math.floor(Math.random() * seedTypes.length)];
             const tokenId = Date.now().toString().slice(-6);
@@ -182,6 +183,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Initialize
     console.log('CGB - Crypto Gift Box initialized');
 });
