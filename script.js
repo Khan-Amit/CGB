@@ -1,4 +1,13 @@
 // script.js - CGB Main Controller
+// Add at top of script.js
+const SITE_PASSWORD = "JUSTLAND2024";
+let isAuthenticated = false;
+
+function checkPassword() {
+    const input = prompt("Enter site password:");
+    if (input === SITE_PASSWORD) isAuthenticated = true;
+    else alert("Wrong password!");
+}
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const connectWalletBtn = document.getElementById('connectWalletBtn');
